@@ -3207,12 +3207,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _focus: {fileID: 0}
-  _distance: 5
+  _distance: 0.3
   _lookAngle: 0
   _focusRadius: 1
   _focusCentering: 0.5
   _sensitive: 0.5
-  _rotationSpeed: 90
+  _rotationSpeed: 45
   _minVerticalAngle: -30
   _maxVerticalAngle: 60
   _obstacleMask:
