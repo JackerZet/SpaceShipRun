@@ -904,7 +904,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  _inputField: {fileID: 100680308}
+  _playerName: 
 --- !u!114 &361298993
 MonoBehaviour:
   m_ObjectHideFlags: 0
