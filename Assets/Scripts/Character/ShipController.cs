@@ -10,13 +10,15 @@ namespace Characters
     public class ShipController : NetworkMovableObject
     {
         [SerializeField] private Transform _cameraAttach;
-     
+
+        private readonly Vector3 respownPosition = new(100, 0, 100);
         private CameraOrbit _cameraOrbit;
         private PlayerLabel _playerLabel;
         private float _shipSpeed;
         private Rigidbody _rb;
 
         [SyncVar] private string _playerName;
+
         public string PlayerName
         {
             get => _playerName;
@@ -89,7 +91,18 @@ namespace Characters
             gameObject.name = _playerName;
         }
 
-        
 
+        [ClientCallback]
+        public void OnTriggerEnter(Collider other)
+        {
+            Respawn();
+        }
+
+        private void Respawn()
+        {
+            gameObject.SetActive(false);       
+            transform.position = respownPosition;
+            gameObject.SetActive(true);
+        }
     }
 }
