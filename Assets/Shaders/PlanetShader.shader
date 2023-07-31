@@ -63,7 +63,6 @@ Shader "Custom/PlanetShader"
 		}
 		void surf (Input IN, inout SurfaceOutput o)
 		{
-			//fixed4 color = tex2D (_MainTex, IN.uv_MainTex) * _MainColor;
 			fixed4 color;
 			float height = IN.color.r;
 			if (height < 0.45)
