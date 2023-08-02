@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace CustomRenderPipeline
 {
-    partial class CameraRenderer // отрисовка неподдерживаемых шейдеров с назначением привычного материала ошибки рендера
+    partial class CameraRenderer
     {
         partial void DrawGizmos()
         {
@@ -47,6 +46,13 @@ namespace CustomRenderPipeline
             var filteringSettings = FilteringSettings.defaultValue;
 
             _context.DrawRenderers(_cullingResult, ref drawingSettings, ref filteringSettings);
+        }
+        private void DrawUI()
+        {      
+            if (_camera.cameraType == CameraType.SceneView)
+            {
+                ScriptableRenderContext.EmitWorldGeometryForSceneView(_camera);
+            }   
         }
 #endif
 

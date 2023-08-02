@@ -1,15 +1,11 @@
-﻿using UnityEditor.Rendering.LookDev;
-using UnityEditor.Rendering;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
 
 namespace CustomRenderPipeline
 {
-
     partial class CameraRenderer
-    {
-      
+    {     
         private ScriptableRenderContext _context;
         private Camera _camera;
         private CommandBuffer _commandBuffer;
@@ -22,7 +18,7 @@ namespace CustomRenderPipeline
         {
             _camera = camera;
             _context = context;
-            //UIGO();
+            DrawUI();
             if (!Cull(out var parameters))
             {
                 return;
@@ -45,7 +41,7 @@ namespace CustomRenderPipeline
         {
             var drawingSettings =
                 CreateDrawingSettings(drawingShaderTagIds, SortingCriteria.CommonOpaque, out var sortingSettings);
-            // отрисовка объектов в порядке удаления: от ближайших к самым дальним
+            
             var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
             _context.DrawRenderers(_cullingResult, ref drawingSettings, ref filteringSettings);
@@ -95,15 +91,7 @@ namespace CustomRenderPipeline
         private void ExecuteCommandBuffer()
         {
             _context.ExecuteCommandBuffer(_commandBuffer);
-            _commandBuffer.Clear(); // явная очистка буфера
-        }
-
-        private void UIGO()
-        {
-            if (_camera.cameraType == CameraType.SceneView)
-            {
-                ScriptableRenderContext.EmitWorldGeometryForSceneView(_camera);
-            }
+            _commandBuffer.Clear(); 
         }
     }
 }
